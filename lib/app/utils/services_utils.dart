@@ -16,28 +16,28 @@ List<ServicesUtils> servicesUtils = [
     name: 'Android App Development',
     icon: 'assets/icons/android.svg',
     description:
-        "Are you interested in the great Mobile app? Let's make it a reality.",
-    tool: ['Flutter', 'React Native', 'Android (Kotlin or Java)'],
+        "Are you interested in bringing your app idea into reality.",
+    tool: ['Flutter','Android (Kotlin or Java)'],
   ),
   ServicesUtils(
     name: 'iOS App Development',
     icon: 'assets/icons/apple.svg',
     description:
-        "Are you interested in the great Mobile app? Let's make it a reality.",
-    tool: ['Flutter', 'React Native'],
+        "Are you interested in bringing your app idea into reality.",
+    tool: ['Flutter'],
   ),
   ServicesUtils(
-    name: 'UI/UX Designing',
-    icon: 'assets/icons/graphic.svg',
+    name: 'AI Development',
+    icon: 'assets/icons/ai_platform.svg',
     description:
-        "I'm creating elegant designs suited to your needs following core design theory. ",
-    tool: ['Adobe XD', 'Figma', 'Photoshop'],
+        "Want to create an AI based solution? Reducting time and cost for your business.",
+    tool: ['Llama Index', 'Langchain', 'Python'],
   ),
-  ServicesUtils(
-    name: 'Web Development',
-    icon: 'assets/icons/website.svg',
-    description:
-        "Do you have an idea for your next great website? Let's make it a reality.",
-    tool: ['Flutter', 'Html,css,js', 'Android (Kotlin or Java)'],
-  ),
+  // ServicesUtils(
+  //   name: 'Web Development',
+  //   icon: 'assets/icons/website.svg',
+  //   description:
+  //       "Do you have an idea for your next great website? Let's make it a reality.",
+  //   tool: ['Flutter', 'Html,css,js', 'Android (Kotlin or Java)'],
+  // ),
 ];

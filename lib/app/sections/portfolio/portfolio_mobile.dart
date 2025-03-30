@@ -19,11 +19,11 @@ class PortfolioMobileTab extends StatelessWidget {
     return Column(
       children: [
         const CustomSectionHeading(text: "\nProjects"),
-        Space.y(3.w)!,
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.w),
-          child: CustomSectionSubHeading(text: protfolioSubHeading),
-        ),
+        // Space.y(3.w)!,
+        // Padding(
+        //   padding: EdgeInsets.symmetric(horizontal: 10.w),
+        //   child: CustomSectionSubHeading(text: protfolioSubHeading),
+        // ),
         Space.y(5.w)!,
         CarouselSlider.builder(
           itemCount: projectUtils.length,

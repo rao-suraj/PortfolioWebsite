@@ -40,9 +40,13 @@ class _ServiceCardState extends State<_ServiceCard> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(
-              widget.service.icon,
-              height: 60,
+            LimitedBox(
+              child: SvgPicture.asset(
+                widget.service.icon,
+                height: 60
+              ),
+              maxHeight: 100,
+              maxWidth: 100,
             ),
             Space.y(3.w)!,
             Text(widget.service.name,

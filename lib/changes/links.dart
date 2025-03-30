@@ -1,9 +1,8 @@
 // CV
 const String resume =
-    'https://drive.google.com/file/d/1bDNNrkQtNVJbXcdwMSx0crQQvAF_nMwV/view?usp=sharing';
-
+    'https://drive.google.com/file/d/13E1lBdhmCtZi3A6uvLy42aTcdL0k5zRb/view?usp=sharing';
 // Github Link
-const String gitHub = 'https://github.com/sudeshnb';
+const String gitHub = 'https://github.com/rao-suraj';
 // Github Link
 const String facebook = 'https://facebook.com/sudeshnb';
 // Github Link
@@ -12,7 +11,7 @@ const String twitter = 'https://twitter.com/sudesh78';
 const String youtube =
     'https://www.youtube.com/channel/UCXooUY2oL_eqGhTaZn-ExSg';
 // Github Link
-const String linkedin = 'https://linkedin.com/in/sudeshnb';
+const String linkedin = 'https://www.linkedin.com/in/rao--suraj/';
 // Github Link
 const String buymeacoffee = 'https://www.buymeacoffee.com/sudeshnb';
 // Github Link

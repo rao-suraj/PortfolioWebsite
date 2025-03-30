@@ -1,10 +1,10 @@
-String hellotag = '''Hi there, Welcome to My Space  ''';
+String hellotag = '''Hi there,''';
 
 String yourname = "I'm Suraj Rao,";
 // String hometitle2 = "A Mobile Application\nDeveloper";
 
 String animationtxt1 = " Mobile Application Developer";
-String animationtxt2 = " Ai Agent Developer";
+String animationtxt2 = " Ai Developer";
 // String animationtxt3 = " Web Developer";
 
 //
@@ -13,10 +13,10 @@ String contactSubHeadding =
     "Let’s work together and make everything super cute and super useful.";
 //
 String miniDescription =
-    "Freelancer providing services for programming and design content needs. Join me down below and let's get started!";
+    "Software Engineer, helping build quality apps and AI-based solutions.";
 
 String servicesSubHeading =
-    "Since the beginning of my journey as a freelance designer and developer, I've worked in startups and collaborated with talented people to create digital products for both business and consumer use. I offer a wide range of services, including brand design, programming and teaching.";
+    "With over 2 years of mobile app development experience, I’ve worked with startups to launch prototypes and actively developed AI-based products that save time, reduce costs, and help businesses grow.";
 //
 
 String protfolioSubHeading =

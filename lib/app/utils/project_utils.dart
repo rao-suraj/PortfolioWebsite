@@ -15,35 +15,35 @@ class ProjectUtils {
 
 List<ProjectUtils> projectUtils = [
   ProjectUtils(
-    banners: 'assets/imgs/02.png',
+    banners: 'assets/imgs/wellwise_background.png',
     icons: 'assets/imgs/flutter.png',
-    titles: 'Awesome Social Media App',
+    titles: 'Wellwise App',
     description:
-        'This is a just Fully functional Social media App by using flutter, source code is also available, check below.',
-    links: 'https://github.com/sudeshnb/poetically-.git',
+        'A health and fitness app that helps you to track your daily water intake by connecting to smart bottle.',
+    links: 'https://play.google.com/store/apps/details?id=com.rosette.rosette',
   ),
   ProjectUtils(
-    banners: 'assets/imgs/1.png',
+    banners: 'assets/imgs/findola_capital.png',
     icons: 'assets/imgs/flutter.png',
-    titles: 'Awesome CRM UI',
+    titles: 'Findola Capital',
     description:
-        'This is a just CRM UI Design using Figma, file is also available, check below.',
-    links: 'https://github.com/sudeshnb/',
+        'Mutual Fund App. Worked on external funds feature',
+    links: 'https://play.google.com/store/apps/details?id=com.findolacapital.findola',
   ),
   ProjectUtils(
-    banners: 'assets/imgs/03.png',
+    banners: 'assets/imgs/auto_silent_app_background.png',
     icons: 'assets/imgs/flutter.png',
-    titles: 'Exercise App',
+    titles: 'Auto Silent App',
     description:
-        'This is a just Fully function Exercise App by using flutter, source code is also available, check below.',
-    links: 'https://github.com/sudeshnb/elderly_exercise_app.git',
+        'This is a app that automatically silences your phone when you are in a meeting or class based on the time set.',
+    links: 'https://github.com/rao-suraj/AutoSilentAppFlutter',
   ),
   ProjectUtils(
-    banners: 'assets/imgs/04.png',
+    banners: 'assets/imgs/chat_bot_background.png',
     icons: 'assets/imgs/flutter.png',
-    titles: 'Awesome Plant App UI',
+    titles: 'Task List Generator',
     description:
-        'This is a just Plant App UI by using flutter, source code is also available, check below.',
-    links: 'https://github.com/sudeshnb/flutter_plant_app.git',
+        'An AI agent that will help you to generate a task list by taking project requirements.',
+    links: 'https://github.com/rao-suraj/TaskListAgent',
   ),
 ];
