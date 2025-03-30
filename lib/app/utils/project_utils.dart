@@ -40,7 +40,7 @@ List<ProjectUtils> projectUtils = [
   ),
   ProjectUtils(
     banners: 'assets/imgs/chat_bot_background.png',
-    icons: 'assets/imgs/flutter.png',
+    icons: 'assets/imgs/crewai.png',
     titles: 'Task List Generator',
     description:
         'An AI agent that will help you to generate a task list by taking project requirements.',
