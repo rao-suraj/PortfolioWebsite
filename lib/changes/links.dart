@@ -1,6 +1,6 @@
 // CV
 const String resume =
-    'https://drive.google.com/file/d/13E1lBdhmCtZi3A6uvLy42aTcdL0k5zRb/view?usp=sharing';
+    'https://docs.google.com/document/d/1tHAzlCm-orkByGpUvcAjyWvCQ0YUPdfFHd3g1knFxOU/edit?usp=sharing';
 // Github Link
 const String gitHub = 'https://github.com/rao-suraj';
 // Github Link
