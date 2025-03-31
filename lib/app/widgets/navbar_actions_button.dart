@@ -32,7 +32,7 @@ class _NavBarActionButtonState extends State<NavBarActionButton> {
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 5),
         decoration: BoxDecoration(
-          gradient: isHover ? pinkpurple : null,
+          color: isHover ? theme.themeHoverColor : null,
           borderRadius: BorderRadius.circular(5.0),
         ),
         child: InkWell(
@@ -46,7 +46,7 @@ class _NavBarActionButtonState extends State<NavBarActionButton> {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Text(
               widget.label,
-              style: TextStyle(color: theme.textColor),
+              style: TextStyle(color: isHover? theme.hoverTextColor : theme.textColor),
             ),
           ),
         ),

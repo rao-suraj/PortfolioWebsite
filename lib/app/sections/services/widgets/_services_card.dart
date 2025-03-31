@@ -33,7 +33,8 @@ class _ServiceCardState extends State<_ServiceCard> {
         padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
         decoration: BoxDecoration(
           // gradient: isHover ? pinkpurple : grayBack,
-          gradient: isHover ? pinkpurple : theme.serviceCard,
+          color: isHover ? null : Brightness.dark == theme.brightness ? lightgrayColor : whiteColor,
+          gradient: isHover ? pinkpurple : null,
           borderRadius: BorderRadius.circular(15),
           boxShadow: isHover ? [primaryColorShadow] : [blackColorShadow],
         ),

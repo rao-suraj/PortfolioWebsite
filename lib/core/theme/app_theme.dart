@@ -70,4 +70,10 @@ extension ThemeExtras on ThemeData {
   //
   Gradient get contactCard =>
       brightness == Brightness.light ? grayWhite : contactGradi;
+
+  Color get hoverTextColor =>
+      brightness == Brightness.light ? darkTextColor : lightTextColor;
+
+  Color get themeHoverColor =>
+      brightness == Brightness.light ? Colors.black : Colors.white;
 }
