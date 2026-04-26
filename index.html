@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[_raosuraj] — Frontend Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FAF6ED;
+    --white: #FFFFFF;
+    --navy: #2D3142;
+    --gold: #F0B040;
+    --border: 2px solid #2D3142;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--navy); font-family: var(--sans); }
+
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+  .cursor {
+    display: inline-block; width: 3px; height: 1em;
+    background: var(--navy); margin-left: 4px; vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--navy); border-bottom: var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 32px; height: 48px;
+  }
+  .nav-logo {
+    font-family: var(--mono); font-weight: 700; font-size: 15px;
+    color: var(--gold); text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a {
+    font-family: var(--mono); font-size: 13px; color: var(--cream);
+    text-decoration: none; opacity: 0.85; transition: opacity .15s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--gold); }
+  .nav-resume {
+    font-family: var(--mono); font-size: 12px; font-weight: 600;
+    background: var(--gold); color: var(--navy); border: var(--border);
+    border-color: var(--gold); padding: 5px 12px; cursor: pointer;
+    text-decoration: none; transition: background .15s;
+  }
+  .nav-resume:hover { background: #e0a030; }
+
+  /* ── WINDOW ── */
+  .win {
+    background: var(--white); border: var(--border);
+    display: flex; flex-direction: column;
+  }
+  .win-titlebar {
+    background: var(--gold); border-bottom: var(--border);
+    display: flex; align-items: center; padding: 0 8px; height: 32px; flex-shrink: 0;
+    position: relative;
+  }
+  .win-title {
+    font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--navy);
+    position: absolute; left: 50%; transform: translateX(-50%);
+    white-space: nowrap; pointer-events: none;
+  }
+  .win-tools { display: flex; gap: 3px; z-index: 1; }
+  .win-btn {
+    width: 20px; height: 20px; border: 1.5px solid var(--navy);
+    background: var(--gold); display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 9px; font-weight: 700; color: var(--navy);
+    cursor: default; line-height: 1; flex-shrink: 0;
+  }
+  .win-controls { display: flex; gap: 4px; margin-left: auto; z-index: 1; }
+  .win-circle {
+    width: 14px; height: 14px; border-radius: 50%;
+    border: 1.5px solid var(--navy); background: var(--gold); flex-shrink: 0;
+  }
+  .win-body { background: var(--white); flex: 1; padding: 20px; }
+  .win-statusbar {
+    border-top: var(--border); background: var(--cream);
+    display: flex; font-family: var(--mono); font-size: 11px; color: var(--navy);
+  }
+  .win-status-cell { padding: 3px 10px; border-right: 1.5px solid var(--navy); }
+  .win-status-cell:last-child { border-right: none; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: calc(100vh - 48px);
+    display: flex; align-items: center;
+    padding: 60px 64px; gap: 60px;
+  }
+  .hero-left { flex: 1; min-width: 0; }
+  .hero-right {
+    flex: 0 0 420px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-right img { width: 100%; max-width: 420px; display: block; }
+  .hero-pill {
+    display: inline-block;
+    background: var(--gold); color: var(--navy);
+    font-family: var(--mono); font-size: 11px; font-weight: 700;
+    padding: 5px 14px; border: var(--border); margin-bottom: 28px;
+    letter-spacing: 0.08em;
+  }
+  .hero-headline {
+    font-family: var(--mono); font-size: clamp(36px, 5vw, 64px);
+    font-weight: 700; color: var(--navy); line-height: 1.1; margin-bottom: 20px;
+  }
+  .hero-sub {
+    font-family: var(--sans); font-size: 17px; color: var(--navy);
+    opacity: 0.7; margin-bottom: 40px; max-width: 420px; line-height: 1.6;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  /* ── BUTTONS ── */
+  .btn-primary {
+    font-family: var(--mono); font-size: 13px; font-weight: 700;
+    background: var(--gold); color: var(--navy); border: var(--border);
+    padding: 12px 28px; cursor: pointer; text-decoration: none;
+    transition: background .15s;
+  }
+  .btn-primary:hover { background: #e0a030; }
+  .btn-secondary {
+    font-family: var(--mono); font-size: 13px; font-weight: 700;
+    background: transparent; color: var(--navy); border: var(--border);
+    padding: 12px 28px; cursor: pointer; text-decoration: none;
+    transition: background .15s;
+  }
+  .btn-secondary:hover { background: rgba(45,49,66,0.06); }
+
+  /* ── SECTIONS ── */
+  .sections {
+    padding: 0 64px 80px;
+    display: flex; flex-direction: column; gap: 48px;
+    max-width: 1100px; margin: 0 auto;
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .skill-icon {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    padding: 16px 8px; border: 1.5px solid var(--navy); background: var(--cream);
+  }
+  .skill-icon-art { width: 48px; height: 48px; }
+  .skill-label {
+    font-family: var(--mono); font-size: 11px; font-weight: 700;
+    color: var(--navy); letter-spacing: 0.05em;
+  }
+
+  /* ── PROJECTS ── */
+  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .project-card {
+    border: var(--border); background: var(--white);
+    display: flex; gap: 16px; padding: 16px; align-items: flex-start;
+    transition: background .12s;
+  }
+  .project-card:hover { background: #fffdf7; }
+  .project-folder-icon { flex-shrink: 0; width: 52px; }
+  .project-card-right { flex: 1; min-width: 0; }
+  .project-name {
+    font-family: var(--mono); font-size: 12px; font-weight: 700;
+    color: var(--navy); margin-bottom: 6px;
+  }
+  .project-desc {
+    font-family: var(--sans); font-size: 13px; color: var(--navy);
+    line-height: 1.5; margin-bottom: 10px; opacity: 0.8;
+  }
+  .badge {
+    display: inline-block; font-family: var(--mono); font-size: 10px; font-weight: 700;
+    padding: 3px 8px; border: 1.5px solid var(--navy); color: var(--navy);
+  }
+  .badge-shipped { background: var(--gold); }
+  .badge-wip { background: var(--white); }
+
+  /* ── EXPERIENCE ── */
+  .exp-tree {
+    font-family: var(--mono); font-size: 13px; color: var(--navy);
+    display: flex; flex-direction: column; gap: 20px;
+  }
+  .exp-main { font-weight: 700; font-size: 13px; margin-bottom: 6px; }
+  .exp-lines { display: flex; flex-direction: column; gap: 3px; padding-left: 20px; }
+  .exp-line { color: var(--navy); opacity: 0.8; font-size: 12px; }
+
+  /* ── CONTACT ── */
+  .mail-form { display: flex; flex-direction: column; gap: 14px; }
+  .mail-label {
+    font-family: var(--mono); font-size: 12px; font-weight: 700;
+    color: var(--navy); margin-bottom: 4px; display: block;
+  }
+  .mail-input, .mail-textarea {
+    width: 100%; border: var(--border); background: var(--white);
+    font-family: var(--sans); font-size: 14px; color: var(--navy);
+    padding: 8px 10px; outline: none;
+  }
+  .mail-input:focus, .mail-textarea:focus { background: #fffdf7; }
+  .mail-textarea { resize: vertical; min-height: 100px; }
+  .mail-footer { display: flex; justify-content: space-between; align-items: center; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy); border-top: var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 32px; height: 44px; flex-wrap: wrap; gap: 8px;
+  }
+  footer span, footer a {
+    font-family: var(--mono); font-size: 11px; color: var(--cream);
+    text-decoration: none; opacity: 0.8;
+  }
+  footer a:hover { opacity: 1; color: var(--gold); }
+  .footer-links { display: flex; gap: 18px; }
+  .footer-counter { color: var(--gold) !important; opacity: 1 !important; font-weight: 700; }
+
+  /* ── DIALOG ── */
+  .dialog-overlay {
+    position: fixed; inset: 0; z-index: 999;
+    background: rgba(45,49,66,0.4);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .dialog-win { width: 300px; border: var(--border); background: var(--white); }
+  .dialog-body {
+    padding: 24px 20px 16px;
+    font-family: var(--sans); font-size: 14px; color: var(--navy); line-height: 1.5;
+  }
+  .dialog-btns {
+    display: flex; padding: 0 16px 16px;
+    gap: 12px; justify-content: flex-end;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero { flex-direction: column; padding: 40px 24px; gap: 40px; min-height: auto; }
+    .hero-right { flex: none; width: 100%; }
+    .sections { padding: 0 24px 60px; }
+    nav { padding: 0 16px; }
+    .nav-links { gap: 16px; }
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .nav-links a:not(.nav-resume) { display: none; }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState } = React;
+
+function Win({ title, children, statusItems, style, className }) {
+  return (
+    <div className={`win${className ? ' ' + className : ''}`} style={style}>
+      <div className="win-titlebar">
+        <div className="win-tools">
+          {['+', '−', '∧', '∨'].map(s => (
+            <div key={s} className="win-btn">{s}</div>
+          ))}
+        </div>
+        <span className="win-title">{title}</span>
+        <div className="win-controls">
+          <div className="win-circle"></div>
+          <div className="win-circle"></div>
+          <div className="win-circle"></div>
+        </div>
+      </div>
+      <div className="win-body">{children}</div>
+      {statusItems && (
+        <div className="win-statusbar">
+          {statusItems.map((s, i) => (
+            <div key={i} className="win-status-cell">{s}</div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+const skillIcons = {
+  JS: (
+    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="44" height="44" fill="#FAF6ED" stroke="#2D3142" strokeWidth="2"/>
+      <text x="24" y="32" textAnchor="middle" fontFamily="JetBrains Mono" fontWeight="700" fontSize="18" fill="#2D3142">JS</text>
+      <rect x="36" y="30" width="8" height="8" fill="#F0B040" stroke="#2D3142" strokeWidth="1.5"/>
+    </svg>
+  ),
+  TS: (
+    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="44" height="44" fill="#FAF6ED" stroke="#2D3142" strokeWidth="2"/>
+      <text x="24" y="32" textAnchor="middle" fontFamily="JetBrains Mono" fontWeight="700" fontSize="18" fill="#2D3142">TS</text>
+      <rect x="2" y="2" width="8" height="8" fill="#F0B040" stroke="#2D3142" strokeWidth="1.5"/>
+    </svg>
+  ),
+  REACT: (
+    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="44" height="44" fill="#FAF6ED" stroke="#2D3142" strokeWidth="2"/>
+      <circle cx="24" cy="24" r="4" fill="#2D3142"/>
+      <ellipse cx="24" cy="24" rx="16" ry="7" stroke="#2D3142" strokeWidth="1.8" fill="none"/>
+      <ellipse cx="24" cy="24" rx="16" ry="7" stroke="#2D3142" strokeWidth="1.8" fill="none" transform="rotate(60 24 24)"/>
+      <ellipse cx="24" cy="24" rx="16" ry="7" stroke="#2D3142" strokeWidth="1.8" fill="none" transform="rotate(120 24 24)"/>
+    </svg>
+  ),
+  NODE: (
+    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="44" height="44" fill="#FAF6ED" stroke="#2D3142" strokeWidth="2"/>
+      <polygon points="24,8 40,18 40,34 24,44 8,34 8,18" fill="#F0B040" stroke="#2D3142" strokeWidth="1.8"/>
+      <text x="24" y="30" textAnchor="middle" fontFamily="JetBrains Mono" fontWeight="700" fontSize="10" fill="#2D3142">NODE</text>
+    </svg>
+  ),
+  CSS: (
+    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="44" height="44" fill="#FAF6ED" stroke="#2D3142" strokeWidth="2"/>
+      <polygon points="8,6 40,6 37,38 24,42 11,38" fill="#F0B040" stroke="#2D3142" strokeWidth="1.8"/>
+      <text x="24" y="30" textAnchor="middle" fontFamily="JetBrains Mono" fontWeight="700" fontSize="11" fill="#2D3142">CSS</text>
+    </svg>
+  ),
+  TAILWIND: (
+    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="44" height="44" fill="#FAF6ED" stroke="#2D3142" strokeWidth="2"/>
+      <path d="M14 20 Q18 12 24 20 Q30 28 36 20" stroke="#2D3142" strokeWidth="2.2" fill="none" strokeLinecap="round"/>
+      <path d="M8 28 Q14 20 20 28 Q26 36 32 28 Q38 20 44 28" stroke="#F0B040" strokeWidth="2.2" fill="none" strokeLinecap="round"/>
+    </svg>
+  ),
+  FIGMA: (
+    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="44" height="44" fill="#FAF6ED" stroke="#2D3142" strokeWidth="2"/>
+      <rect x="14" y="6" width="10" height="12" rx="5" fill="#F0B040" stroke="#2D3142" strokeWidth="1.5"/>
+      <rect x="14" y="18" width="10" height="12" fill="#FAF6ED" stroke="#2D3142" strokeWidth="1.5"/>
+      <rect x="14" y="30" width="10" height="12" rx="5" fill="#2D3142" stroke="#2D3142" strokeWidth="1.5"/>
+      <rect x="24" y="18" width="10" height="12" rx="5" fill="#F0B040" stroke="#2D3142" strokeWidth="1.5"/>
+      <circle cx="29" cy="12" r="5" fill="#FAF6ED" stroke="#2D3142" strokeWidth="1.5"/>
+    </svg>
+  ),
+  GIT: (
+    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="44" height="44" fill="#FAF6ED" stroke="#2D3142" strokeWidth="2"/>
+      <circle cx="34" cy="14" r="5" fill="#F0B040" stroke="#2D3142" strokeWidth="1.5"/>
+      <circle cx="14" cy="34" r="5" fill="#F0B040" stroke="#2D3142" strokeWidth="1.5"/>
+      <circle cx="14" cy="14" r="5" fill="#FAF6ED" stroke="#2D3142" strokeWidth="1.5"/>
+      <path d="M14 19 L14 29" stroke="#2D3142" strokeWidth="1.8"/>
+      <path d="M17 14 L31 17" stroke="#2D3142" strokeWidth="1.8"/>
+    </svg>
+  ),
+};
+
+function FolderIcon({ shipped }) {
+  return (
+    <svg viewBox="0 0 52 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M2 10 Q2 6 6 6 L20 6 L24 10 L46 10 Q50 10 50 14 L50 38 Q50 42 46 42 L6 42 Q2 42 2 38 Z"
+        fill={shipped ? '#F0B040' : '#FAF6ED'} stroke="#2D3142" strokeWidth="2"
+      />
+      <path d="M2 14 L50 14" stroke="#2D3142" strokeWidth="2"/>
+      <text x="26" y="32" textAnchor="middle" fontFamily="JetBrains Mono" fontWeight="700" fontSize="9" fill="#2D3142">
+        {shipped ? 'DONE' : 'WIP'}
+      </text>
+    </svg>
+  );
+}
+
+function ProjectCard({ title, desc, shipped }) {
+  return (
+    <div className="project-card">
+      <div className="project-folder-icon">
+        <FolderIcon shipped={shipped} />
+      </div>
+      <div className="project-card-right">
+        <div className="project-name">{title}</div>
+        <p className="project-desc">{desc}</p>
+        <span className={`badge ${shipped ? 'badge-shipped' : 'badge-wip'}`}>
+          {shipped ? '▓ SHIPPED' : '▓ IN_PROGRESS'}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function Dialog({ onYes, onNo }) {
+  return (
+    <div className="dialog-overlay" onClick={onNo}>
+      <div className="dialog-win" onClick={e => e.stopPropagation()}>
+        <div className="win-titlebar">
+          <div className="win-tools">
+            <div className="win-btn">×</div>
+          </div>
+          <span className="win-title">Confirm</span>
+          <div className="win-controls">
+            <div className="win-circle"></div>
+          </div>
+        </div>
+        <div className="dialog-body">
+          Are you sure you want to download <strong>resume.pdf</strong>?
+        </div>
+        <div className="dialog-btns">
+          <button className="btn-secondary" style={{padding:'6px 20px', fontSize:12}} onClick={onNo}>No</button>
+          <button className="btn-primary" style={{padding:'6px 20px', fontSize:12}} onClick={onYes}>Yes</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  const [showDialog, setShowDialog] = useState(false);
+
+  function handleResume(e) {
+    e.preventDefault();
+    setShowDialog(true);
+  }
+
+  function confirmResume() {
+    setShowDialog(false);
+    window.open('#', '_blank');
+  }
+
+  return (
+    <>
+      <nav>
+        <a href="#hero" className="nav-logo">_raosuraj</a>
+        <div className="nav-links">
+          <a href="#about">about</a>
+          <a href="#work">work</a>
+          <a href="#contact">contact</a>
+          <a href="#" className="nav-resume" onClick={handleResume}>resume.pdf ↓</a>
+        </div>
+      </nav>
+
+      <section className="hero" id="hero">
+        <div className="hero-left">
+          <div className="hero-pill">FRONTEND DEV · EST. 2020</div>
+          <h1 className="hero-headline">
+            Hi, I'm<br />_raosuraj.<span className="cursor"></span>
+          </h1>
+          <p className="hero-sub">
+            Crafting interfaces that feel chunky, fast, and a little bit nostalgic.
+          </p>
+          <div className="hero-btns">
+            <a href="#work" className="btn-primary">▶ VIEW WORK</a>
+            <a href="#contact" className="btn-secondary">SAY HI</a>
+          </div>
+        </div>
+        <div className="hero-right">
+          <img src="assets/pc.png" alt="Vintage PC monitor" />
+        </div>
+      </section>
+
+      <div className="sections">
+
+        <section id="about">
+          <Win title="readme.txt — Notepad" statusItems={['Ready', 'Ln 6, Col 14', 'INS']}>
+            <p style={{fontFamily:'var(--sans)', fontSize:15, lineHeight:1.75, color:'var(--navy)', marginBottom:16}}>
+              I'm a frontend developer with a taste for the retro and an obsession with the details. I've been building for the web since 2020, with a focus on React, TypeScript, and making things feel genuinely good to use — not just functional.
+            </p>
+            <p style={{fontFamily:'var(--sans)', fontSize:15, lineHeight:1.75, color:'var(--navy)'}}>
+              When I'm not pushing pixels, I'm probably playing old point-and-click adventure games for UI inspiration. If an interface can make someone smile, I've done my job.
+            </p>
+          </Win>
+        </section>
+
+        <section id="skills">
+          <Win title="Toolbox" statusItems={['8 items', 'Ready']}>
+            <div className="skills-grid">
+              {Object.entries(skillIcons).map(([name, svg]) => (
+                <div key={name} className="skill-icon">
+                  <div className="skill-icon-art">{svg}</div>
+                  <span className="skill-label">{name}</span>
+                </div>
+              ))}
+            </div>
+          </Win>
+        </section>
+
+        <section id="work">
+          <Win title="Folder — selected.work" statusItems={['4 objects', 'Ready']}>
+            <div className="projects-grid">
+              <ProjectCard
+                title="project_01.exe"
+                desc="A no-frills task manager with keyboard-first navigation and offline sync. Zero dependencies."
+                shipped={true}
+              />
+              <ProjectCard
+                title="project_02.exe"
+                desc="Component library built on raw CSS custom properties. 40+ composable primitives, zero runtime."
+                shipped={true}
+              />
+              <ProjectCard
+                title="project_03.exe"
+                desc="Real-time collaborative whiteboard. WebSocket canvas with CRDT conflict resolution under the hood."
+                shipped={false}
+              />
+              <ProjectCard
+                title="project_04.exe"
+                desc="Static site generator with a focus on Markdown + MDX. Outputs single-file HTML bundles."
+                shipped={false}
+              />
+            </div>
+          </Win>
+        </section>
+
+        <section id="experience">
+          <Win title="changelog.md" statusItems={['Ln 1, Col 1', 'INS']}>
+            <div className="exp-tree">
+              <div className="exp-entry">
+                <div className="exp-main">├ v3.0 — 2024 — Senior Frontend Engineer @ Acme Corp</div>
+                <div className="exp-lines">
+                  <div className="exp-line">│ ├ Led redesign of dashboard — cut load time by 60%</div>
+                  <div className="exp-line">│ ├ Mentored 3 junior devs; ran weekly design-systems guild</div>
+                  <div className="exp-line">│ └ Shipped new component library used across 6 products</div>
+                </div>
+              </div>
+              <div className="exp-entry">
+                <div className="exp-main">├ v2.0 — 2022 — Frontend Developer @ Studio Pixel</div>
+                <div className="exp-lines">
+                  <div className="exp-line">│ ├ Built interactive data-vis suite in React + D3</div>
+                  <div className="exp-line">│ ├ Owned CI/CD pipeline; reduced deploy time from 14m → 3m</div>
+                  <div className="exp-line">│ └ Maintained design system across Figma and codebase in sync</div>
+                </div>
+              </div>
+              <div className="exp-entry">
+                <div className="exp-main">└ v1.0 — 2020 — Junior Developer @ Freelance</div>
+                <div className="exp-lines">
+                  <div className="exp-line">  ├ Delivered 12+ client sites using HTML, CSS, vanilla JS</div>
+                  <div className="exp-line">  └ First React project — a music discovery app</div>
+                </div>
+              </div>
+            </div>
+          </Win>
+        </section>
+
+        <section id="contact">
+          <Win title="send_mail.exe" statusItems={['Ready', 'Secure']}>
+            <div className="mail-form">
+              <div>
+                <label className="mail-label">Mail To: surajrao250@gmail.com</label>
+              </div>
+              <div>
+                <label className="mail-label">From:</label>
+                <input className="mail-input" type="email" placeholder="your@email.com" />
+              </div>
+              <div>
+                <label className="mail-label">Subject:</label>
+                <input className="mail-input" type="text" placeholder="Let's build something..." />
+              </div>
+              <div>
+                <label className="mail-label">Message:</label>
+                <textarea className="mail-textarea" placeholder="Hi Suraj, I wanted to reach out about..."></textarea>
+              </div>
+              <div className="mail-footer">
+                <button className="btn-secondary" style={{fontSize:13}}>Clear</button>
+                <button className="btn-primary" style={{fontSize:13}}>▶ SEND</button>
+              </div>
+            </div>
+          </Win>
+        </section>
+
+      </div>
+
+      <footer>
+        <span>© 1990–2026 [_raosuraj]</span>
+        <div className="footer-links">
+          <a href="https://github.com/rao-suraj" target="_blank" rel="noopener noreferrer">github</a>
+          <a href="https://www.linkedin.com/in/rao--suraj" target="_blank" rel="noopener noreferrer">linkedin</a>
+        </div>
+        <span className="footer-counter">visitors: 000247</span>
+      </footer>
+
+      {showDialog && (
+        <Dialog onYes={confirmResume} onNo={() => setShowDialog(false)} />
+      )}
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
