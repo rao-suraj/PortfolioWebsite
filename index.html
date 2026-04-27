@@ -96,7 +96,10 @@
   .hero {
     min-height: calc(100vh - 48px);
     display: flex; align-items: center;
-    padding: 60px 64px; gap: 60px;
+    padding: 60px 64px;
+    gap: 40px;
+    max-width: 1350px;
+    margin: 0 auto;
   }
   .hero-left { flex: 1; min-width: 0; }
   .hero-right {
@@ -141,7 +144,7 @@
   .sections {
     padding: 0 64px 80px;
     display: flex; flex-direction: column; gap: 48px;
-    max-width: 1100px; margin: 0 auto;
+    max-width: 1350px; margin: 0 auto;
   }
 
   /* ── SKILLS ── */
@@ -244,6 +247,21 @@
     .nav-links { gap: 16px; }
     .skills-grid { grid-template-columns: repeat(2, 1fr); }
     .projects-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Extra large screens: reduce hero gap/padding, increase max-width */
+  @media (min-width: 1400px) {
+    .hero {
+      max-width: 1500px;
+      padding-left: 64px;
+      padding-right: 64px;
+      gap: 24px;
+    }
+    .sections {
+      max-width: 1500px;
+      padding-left: 64px;
+      padding-right: 64px;
+    }
   }
   @media (max-width: 480px) {
     .nav-links a:not(.nav-resume) { display: none; }
