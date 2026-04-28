@@ -184,6 +184,9 @@
   }
   .badge-shipped { background: var(--gold); }
   .badge-wip { background: var(--white); }
+  .badge-link { text-decoration: none; background: var(--white); transition: background .12s; }
+  .badge-link:hover { background: var(--cream); }
+  .project-badges { display: flex; flex-wrap: wrap; gap: 6px; }
 
   /* ── EXPERIENCE ── */
   .exp-tree {
@@ -383,7 +386,7 @@ function FolderIcon({ shipped }) {
   );
 }
 
-function ProjectCard({ title, desc, shipped }) {
+function ProjectCard({ title, desc, shipped, live, demo, git }) {
   return (
     <div className="project-card">
       <div className="project-folder-icon">
@@ -392,9 +395,14 @@ function ProjectCard({ title, desc, shipped }) {
       <div className="project-card-right">
         <div className="project-name">{title}</div>
         <p className="project-desc">{desc}</p>
-        <span className={`badge ${shipped ? 'badge-shipped' : 'badge-wip'}`}>
-          {shipped ? '▓ SHIPPED' : '▓ IN_PROGRESS'}
-        </span>
+        <div className="project-badges">
+          <span className={`badge ${shipped ? 'badge-shipped' : 'badge-wip'}`}>
+            {shipped ? '✓ SHIPPED' : '⧖ IN_PROGRESS'}
+          </span>
+          {live && <a href={live} target="_blank" rel="noopener noreferrer" className="badge badge-link">⬡ LIVE</a>}
+          {demo && <a href={demo} target="_blank" rel="noopener noreferrer" className="badge badge-link">▶ DEMO</a>}
+          {git && <a href={git} target="_blank" rel="noopener noreferrer" className="badge badge-link">⌥ GITHUB</a>}
+        </div>
       </div>
     </div>
   );
@@ -511,27 +519,20 @@ function App() {
         </section>
 
         <section id="work">
-          <Win title="Folder — selected.work" statusItems={['4 objects', 'Ready']}>
+          <Win title="Folder — selected.work" statusItems={['2 objects', 'Ready']}>
             <div className="projects-grid">
               <ProjectCard
-                title="project_01.exe"
-                desc="A no-frills task manager with keyboard-first navigation and offline sync. Zero dependencies."
+                title="auto_silent.apk"
+                desc="Flutter app that automates silent mode and media control scheduling using AlarmManager and WorkManager. Leverages Flutter platform channels to integrate Android native APIs with robust permission handling."
                 shipped={true}
+                demo="https://github.com/rao-suraj/AutoSilentAppFlutter"
+                git="https://github.com/rao-suraj/AutoSilentAppFlutter"
               />
               <ProjectCard
-                title="project_02.exe"
-                desc="Component library built on raw CSS custom properties. 40+ composable primitives, zero runtime."
+                title="ai_task_planner.exe"
+                desc="Multi-agent AI system that transforms project requirements into actionable task plans using CrewAI. Features WebSocket real-time streaming, structured validation, and guardrails for production-safe outputs."
                 shipped={true}
-              />
-              <ProjectCard
-                title="project_03.exe"
-                desc="Real-time collaborative whiteboard. WebSocket canvas with CRDT conflict resolution under the hood."
-                shipped={false}
-              />
-              <ProjectCard
-                title="project_04.exe"
-                desc="Static site generator with a focus on Markdown + MDX. Outputs single-file HTML bundles."
-                shipped={false}
+                live="https://v0-pan-chatbot.vercel.app/"
               />
             </div>
           </Win>
