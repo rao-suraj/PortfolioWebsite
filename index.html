@@ -429,6 +429,9 @@ function Dialog({ onYes, onNo }) {
 
 function App() {
   const [showDialog, setShowDialog] = useState(false);
+  const [from, setFrom] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
 
   function handleResume(e) {
     e.preventDefault();
@@ -438,6 +441,18 @@ function App() {
   function confirmResume() {
     setShowDialog(false);
     window.open('https://drive.google.com/file/d/16wR6lMgIpZm94vgnempekDKx7FGv5men/view?usp=sharing', '_blank');
+  }
+
+  function handleClear() {
+    setFrom('');
+    setSubject('');
+    setMessage('');
+  }
+
+  function handleSend() {
+    const body = message + (from ? '\n\nFrom: ' + from : '');
+    const mailto = `mailto:surajrao250@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(mailto, '_blank');
   }
 
   return (
@@ -562,19 +577,19 @@ function App() {
               </div>
               <div>
                 <label className="mail-label">From:</label>
-                <input className="mail-input" type="email" placeholder="your@email.com" />
+                <input className="mail-input" type="email" placeholder="your@email.com" value={from} onChange={e => setFrom(e.target.value)} />
               </div>
               <div>
                 <label className="mail-label">Subject:</label>
-                <input className="mail-input" type="text" placeholder="Let's build something..." />
+                <input className="mail-input" type="text" placeholder="Let's build something..." value={subject} onChange={e => setSubject(e.target.value)} />
               </div>
               <div>
                 <label className="mail-label">Message:</label>
-                <textarea className="mail-textarea" placeholder="Hi Suraj, I wanted to reach out about..."></textarea>
+                <textarea className="mail-textarea" placeholder="Hi Suraj, I wanted to reach out about..." value={message} onChange={e => setMessage(e.target.value)}></textarea>
               </div>
               <div className="mail-footer">
-                <button className="btn-secondary" style={{fontSize:13}}>Clear</button>
-                <button className="btn-primary" style={{fontSize:13}}>▶ SEND</button>
+                <button className="btn-secondary" style={{fontSize:13}} onClick={handleClear}>Clear</button>
+                <button className="btn-primary" style={{fontSize:13}} onClick={handleSend}>▶ SEND</button>
               </div>
             </div>
           </Win>
