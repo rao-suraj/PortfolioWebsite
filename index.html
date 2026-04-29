@@ -584,8 +584,13 @@ function App() {
         </section>
 
         <section id="work">
-          <Win title="Folder — selected.work" statusItems={['2 objects', 'Ready']}>
+          <Win title="Folder — selected.work" statusItems={['3 objects', 'Ready']}>
             <div className="projects-grid">
+              <ProjectCard
+                title="ChatIt"
+                desc="Bus ticket booking system built on WhatsApp — zero app install, low cost, fast. Search routes, pick seats, and pay entirely through chat. Handles FAQs conversationally so users never leave the interface they already use."
+                shipped={false}
+              />
               <ProjectCard
                 title="auto_silent.apk"
                 desc="Flutter app that automates silent mode and media control scheduling using AlarmManager and WorkManager. Leverages Flutter platform channels to integrate Android native APIs with robust permission handling."
