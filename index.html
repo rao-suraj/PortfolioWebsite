@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>_raosuraj</title>
 <link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preload" as="image" href="assets/PC_TRANSPARENT.webp" type="image/webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
@@ -557,7 +558,10 @@ function App() {
           </div>
         </div>
         <div className="hero-right">
-          <img src="assets/PC_TRANSPARENT.png" alt="Vintage PC monitor" />
+          <picture>
+            <source srcSet="assets/PC_TRANSPARENT.webp" type="image/webp" />
+            <img src="assets/PC_TRANSPARENT.png" alt="Vintage PC monitor" fetchPriority="high" />
+          </picture>
         </div>
       </section>
 
