@@ -99,6 +99,7 @@ nav {
   width: 100%;
   max-width: 420px;
   height: auto;
+  aspect-ratio: 1 / 1;
   display: block;
 }
 .hero-pill {

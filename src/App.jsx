@@ -66,8 +66,8 @@ export default function App() {
                 src="/assets/PC_TRANSPARENT.png"
                 alt="Vintage PC monitor"
                 fetchPriority="high"
-                width="840"
-                height="840"
+                width="760"
+                height="760"
               />
             </picture>
           </div>
