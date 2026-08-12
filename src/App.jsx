@@ -52,7 +52,7 @@ export default function App() {
               Hi, I'm<br />_raosuraj.<span className="cursor"></span>
             </h1>
             <p className="hero-sub">
-              2 years of experience building software including apps, websites, and AI applications.
+              2 years of experience building full-stack apps and scalable backend systems.
             </p>
             <div className="hero-btns">
               <a href="#work" className="btn-primary">▶ VIEW WORK</a>
@@ -77,11 +77,11 @@ export default function App() {
 
           <section id="about">
             <Win title="readme.txt — Notepad" statusItems={['Ready', 'Ln 6, Col 14', 'INS']}>
-              <p style={{fontFamily:'var(--sans)', fontSize:15, lineHeight:1.75, color:'var(--navy)', marginBottom:16}}>
-                Experience in building scalable and high-performance applications, including IoT apps, fintech apps, and chatbots across domains like fintech and healthcare. Working with technologies such as Flutter, Express, Gin, LangChain, CrewAI, and Docker has helped me build high-quality, scalable systems.
+              <p style={{ fontFamily: 'var(--sans)', fontSize: 15, lineHeight: 1.75, color: 'var(--navy)', marginBottom: 16 }}>
+                Experience in building scalable, high-performance applications, including IoT and fintech applications across domains such as fintech and healthcare. Working with technologies like Flutter, Express, Fiber, Kafka, Kubernetes, and Docker has helped me build high-quality, scalable systems.
               </p>
-              <p style={{fontFamily:'var(--sans)', fontSize:15, lineHeight:1.75, color:'var(--navy)'}}>
-                Built products like IndusInd Money CRM and the Findola Capital Mutual Fund App, gaining experience in developing features used by thousands of users.
+              <p style={{ fontFamily: 'var(--sans)', fontSize: 15, lineHeight: 1.75, color: 'var(--navy)' }}>
+                Built products including the IndusInd Money CRM and Findola Capital Mutual Fund App, Indvestment gaining experience in developing features used by thousands of users.
               </p>
             </Win>
           </section>
@@ -100,7 +100,7 @@ export default function App() {
           </section>
 
           <section id="work">
-            <Win title="Folder — selected.project" statusItems={['3 objects', 'Ready']}>
+            <Win title="Folder — selected.project" statusItems={['4 objects', 'Ready']}>
               <div className="projects-grid">
                 <ProjectCard
                   title="ChatIt"
@@ -120,6 +120,13 @@ export default function App() {
                   shipped={true}
                   live="https://v0-pan-chatbot.vercel.app/"
                 />
+                <ProjectCard
+                  title="aggriai"
+                  desc="AI news aggregator that ingests daily RSS feeds, clusters duplicate coverage of the same event, scores each story for trustworthiness (source tier + corroboration + AI sanity check), and ranks a neutral top-20 with AI-generated summaries. NestJS + TypeORM (MySQL) backend built around a Scheduler → Ingestion → Clustering → Scoring → Ranking → Summarization → DB → API pipeline."
+                  shipped={true}
+                  live="https://aggriai.raosuraj.com/"
+                  git="https://github.com/rao-suraj/aggri-ai-frontend"
+                />
               </div>
             </Win>
           </section>
@@ -131,8 +138,7 @@ export default function App() {
                   <div className="exp-main">├ v3.0 — Sep 2024–Present — Full Stack Developer @ Mindstack Technologies</div>
                   <div className="exp-lines">
                     <div className="exp-line">│ ├ Designed and implemented CRM system for Reliance Security — project architecture, DB schema, user management, auth/authz, logging, and security</div>
-                    <div className="exp-line">│ ├ Built PoC for MRPL (Mangalore Refinery and Petrochemicals Ltd) — optimized LLM pipeline for internal use</div>
-                    <div className="exp-line">│ ├ Redesigned UI and led FP-to-BSE migration for Miles Mutual Fund App (v2) — eliminated legacy bottlenecks</div>
+                    <div className="exp-line">│ ├ Contributed to Indvestment (smallcase-like investing platform) — built basket service (creation, listing, management) and broker execution service (multi-broker connections and order transactions)</div>                    <div className="exp-line">│ ├ Redesigned UI and led FP-to-BSE migration for Miles Mutual Fund App (v2) — eliminated legacy bottlenecks</div>
                     <div className="exp-line">│ ├ Built External Funds module for Findola Capitals — improved user retention by 7% via MFCentral + Razorpay</div>
                     <div className="exp-line">│ └ Improved KYC onboarding completion by 20% using Firebase Analytics and Microsoft Clarity</div>
                   </div>
@@ -176,8 +182,8 @@ export default function App() {
                   <textarea className="mail-textarea" placeholder="Hi Suraj, I wanted to reach out about..." value={message} onChange={e => setMessage(e.target.value)}></textarea>
                 </div>
                 <div className="mail-footer">
-                  <button className="btn-secondary" style={{fontSize:13}} onClick={handleClear}>Clear</button>
-                  <button className="btn-primary" style={{fontSize:13}} onClick={handleSend}>▶ SEND</button>
+                  <button className="btn-secondary" style={{ fontSize: 13 }} onClick={handleClear}>Clear</button>
+                  <button className="btn-primary" style={{ fontSize: 13 }} onClick={handleSend}>▶ SEND</button>
                 </div>
               </div>
             </Win>
