@@ -118,7 +118,7 @@ export default function App() {
                   title="ai_task_planner.exe"
                   desc="Multi-agent AI system that transforms project requirements into actionable task plans using CrewAI. Features WebSocket real-time streaming, structured validation, and guardrails for production-safe outputs."
                   shipped={true}
-                  live="https://v0-pan-chatbot.vercel.app/"
+                  live="https://tasklistagent.raosuraj.com/"
                 />
                 <ProjectCard
                   title="aggriai"
